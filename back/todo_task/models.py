@@ -3,6 +3,13 @@ from django.db import models
 
 
 class Task(models.Model):
+    """
+    Model representing a Task with:
+        -Title of the task
+        -Description of the task
+        -If the task is Done check TRUE else FALSE
+        -The user who create the task
+    """
     title = models.CharField(max_length=100)
     description = models.TextField()
     completed = models.BooleanField(default=False)
