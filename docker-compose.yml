@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  backend:
+    build: ./app_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app_backend:/app_backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DJANGO_SECRET_KEY=your_secret_key_here
+      - DATABASE_URL=postgres://postgres:root@db:5432/db_todoapp
+
+  frontend:
+    build: ./frontend
+    command: npm start
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:8000
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: db_todoapp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
