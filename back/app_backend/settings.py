@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo_task',
     'rest_framework',
+    'corsheaders',
 
 ]
 
@@ -48,6 +49,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
