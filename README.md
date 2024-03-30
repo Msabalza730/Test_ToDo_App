@@ -20,3 +20,5 @@ ToDo Application using Django Rest Framework and React Js
 
 
 ## Run the app with docker: 
+
+docker-compose up --build
